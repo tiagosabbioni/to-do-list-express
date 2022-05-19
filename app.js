@@ -1,3 +1,5 @@
+"use strict";
+
 const express = require("express");
 const checklistRouter = require("./src/routes/checklist");
 require("./config/database");
