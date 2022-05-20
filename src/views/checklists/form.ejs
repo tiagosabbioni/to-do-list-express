@@ -1,22 +1,18 @@
-<%- include("../layouts/header", { title: "Lista de Tarefas" }) %>
-<%- include("../layouts/menu") %>
-
 <section class="section">
     <div class="container">
-        <h1 class="title size-4">Nova Lista</h1>
-        <form>
+        <h1 class="title size-4"><%= actionType %></h1>
+        <form method="post" action="<%= url %>">
             <div class="field">
                 <label class="label">Nome</label>
                 <div class="control">
-                    <input class="input" type="text" name="checklist[name]" placeholder="Lista de Tarefas">
-                    <p class="is-danger help">Name should be present</p>
+                    <input class="input" type="text" name="checklist[name]" placeholder="Lista de Tarefas" value="<%= checklist.name %>">
+                    <% if(checklist.error) { %>
+                        <p class="is-danger help"><%= checklist.error %></p>
+                    <% } %>
                 </div>
             </div>
-
             <button type="submit" class="button is-success">Salvar</button>
-            <a href="/checklists/index" class="button">Cancelar</a>
+            <a href="/checklists" class="button">Cancelar</a>
         </form>
     </div>
 </section>
-
-  <%- include("../layouts/footer") %>

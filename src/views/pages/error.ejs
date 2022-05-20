@@ -1,18 +1,18 @@
 <%- include("../layouts/header", { title: "TODO-List" }) %>
 <%- include("../layouts/menu") %>
 
-<section class="section hero is-link is-fullheight-with-navbar">
+<section class="section hero is-danger is-fullheight-with-navbar">
   <div class="hero-body has-text-centered">
     <div class="container">
       <h1 class="title">
-        TODO-List
+        Ops! Algo deu errado =(
       </h1>
       <h2 class="subtitle">
-        Geranciando nossas atividades diárias =D
+        <%= error %>
       </h2>
-      <a href="/checklists" class="button is-light is-medium">Ir para Listas de Atividades!</a>
+      <a href="/checklists" class="button is-light is-medium">Ir para Lista de Tarefas</a>
     </div>
   </div>
 </section>
 
-<%- include("../layouts/footer") %>
+<%- include('../layouts/footer') %>
