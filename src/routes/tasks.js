@@ -2,6 +2,7 @@
 
 const express = require("express");
 const checklistDependentRoute = express.Router();
+const router = express.Router();
 
 const Checklist = require("../models/checklist");
 const Task = require("../models/task");
@@ -30,4 +31,17 @@ checklistDependentRoute.post("/:id/tasks", async (req, res) => {
     }
 });
 
-module.exports = { checklistDependentRoute: checklistDependentRoute };
+router.delete("/:id", async (req, res) => {
+    let task = await Task.findByIdAndDelete(req.params.id);
+    try{
+        let checklist = await Checklist.findById(task.checklist);
+        checklist.tasks.splice(checklist.tasks.indexOf(task._id), 1);
+        checklist.save();
+        res.status(200).redirect(`/checklists`);
+    }catch(error){
+        console.log(error);
+        res.status(500).render("pages/error", { error: "Erro ao deletar uma tarefa" });
+    }
+});
+
+module.exports = { checklistDependentRoute: checklistDependentRoute, simpleRouter: router };
